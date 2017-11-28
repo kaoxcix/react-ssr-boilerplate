@@ -1,0 +1,32 @@
+{
+  "name": "arms-front",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "path": "^0.12.7",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-router-dom": "^4.2.2",
+    "webpack-dev-middleware": "^1.12.1",
+    "webpack-hot-middleware": "^2.20.0",
+    "webpack-hot-server-middleware": "^0.3.0"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "react-helmet": "^5.2.0",
+    "stats-webpack-plugin": "^0.6.1",
+    "webpack": "^3.8.1"
+  },
+  "scripts": {
+    "dev": "node scripts/development.js",
+    "prod": "node scripts/production.js",
+    "build": "NODE_ENV=production ./node_modules/.bin/webpack --config ./webpack/webpack.production.config.js --progress --profile --colors"
+  }
+}

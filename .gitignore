@@ -1,0 +1,43 @@
+### JetBrains
+.idea
+
+### Windows
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+### LibreOffice
+.~lock.*#
+
+### Node template
+.grunt
+bower_components
+build/Release
+node_modules/
+.eslintcache
+
+### macOS template
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### Sass
+.sass-cache/
+
+### Other
+*.log
