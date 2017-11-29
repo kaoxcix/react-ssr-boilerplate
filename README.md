@@ -53,11 +53,11 @@ Server side rendering with React.js React Router v4 and React Helmet
 | public | Public Assets and Bundled JS Files |
 | scripts | Development and Production Script |
 | src | React Sourcecode |
-| ├─ api | Backend API like userApi.js, productApi.js |
-| ├─ components | Dumb components (Reusable components) like Avatar.jsx |
-|        └─ core | Core or Common components like Button.jsx |
-| ├─ containers | Container components like App.jsx, Index.jsx |
-| └─ utilities | Utility functions like Error Handlers, Formatters |
+| ├ api | Backend API like userApi.js, productApi.js |
+| ├ components | Dumb components (Reusable components) like Avatar.jsx |
+|        └ core | Core or Common components like Button.jsx |
+| ├ containers | Container components like App.jsx, Index.jsx |
+| └ utilities | Utility functions like Error Handlers, Formatters |
 | tests | Testing file **(Unavailable Now)** |
 | webpack | Webpack Configuration files |
 
