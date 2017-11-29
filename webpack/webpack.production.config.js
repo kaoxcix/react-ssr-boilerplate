@@ -1,7 +1,5 @@
 const path        = require('path');
-const dist        = path.join(__dirname, 'dist');
 const webpack     = require('webpack');
-const statsPlugin = require('stats-webpack-plugin');
 
 const commonConfiguration = {
     context: path.resolve(__dirname, '../src'),
@@ -87,13 +85,5 @@ module.exports = [
                 },
             ],
         },
-        plugins: [
-            new statsPlugin('stats.json', {
-                chunkModules: true,
-                modules:      true,
-                chunks:       true,
-                exclude:      [/node_modules[\\\/]react/],
-            }),
-        ]
     }
 ];

@@ -11,13 +11,17 @@ const
     , compiler                   = webpack(config)
 
     // configuration
-    , port                       = 3000
-    , publicPath                 = '/public/'
+    , serverHostname             = '0.0.0.0'
+    , serverPort                 = '3000'
+    , publicPath                 = '/public'
 ;
+
+app.use('/public', express.static(path.join(__dirname, '..', 'public')));
 
 app.use(webpackDevMiddleware(
     compiler,
     {
+        noInfo: true,
         publicPath: publicPath,
     }
 ));
@@ -32,4 +36,12 @@ app.use(
     webpackHotServerMiddleware(compiler)
 );
 
-app.listen(port);
+app.listen(serverPort, serverHostname, function (err) {
+    if (err) {
+        console.log(err.message)
+    } else {
+        let hostname = this.address().address;
+        let port     = this.address().port;
+        console.log(`\x1b[36m%s\x1b[0m`, `Server is listening on http://${hostname}:${port}`);
+    }
+});
