@@ -48,7 +48,7 @@ Server side rendering with React.js React Router v4 and React Helmet
 | webpack-hot-server-middleware | 0.3 | Used in conjunction with webpack-dev-middleware (and optionally webpack-hot-middleware) to hot update Webpack bundles on the server |
 
 ## Structure
-| xxx | xxx |
+| Directory Name | Description |
 | ------------ | ------- |
 | public | Public Assets and Bundled JS Files |
 | scripts | Development and Production Script |
