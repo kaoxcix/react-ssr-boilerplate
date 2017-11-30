@@ -3,7 +3,7 @@ const
     express              = require('express')
     , path               = require('path')
     , app                = express()
-    , serverRendererPath = path.join(__dirname, '..', 'public', 'server.js')
+    , serverRendererPath = path.join(__dirname, '..', 'dist', 'server.js')
     , serverRenderer     = require(serverRendererPath).default
 
     // configuration
@@ -11,7 +11,7 @@ const
     , serverPort         = '8000'
 ;
 
-app.use('/public', express.static(path.join(__dirname, '..', 'public')));
+app.use('/public', express.static(path.join(__dirname, '..', 'dist', 'public')));
 
 app.use(serverRenderer());
 

@@ -13,10 +13,10 @@ const
     // configuration
     , serverHostname             = '0.0.0.0'
     , serverPort                 = '3000'
-    , publicPath                 = '/public'
+    , publicPath                 = '/public/'
 ;
 
-app.use('/public', express.static(path.join(__dirname, '..', 'public')));
+app.use('/public/', express.static(path.join(__dirname, '..', 'dist', 'public')));
 
 app.use(webpackDevMiddleware(
     compiler,

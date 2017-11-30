@@ -36,7 +36,7 @@ module.exports = [
         target: 'web',
         entry:  './client.jsx',
         output: {
-            path:       path.join(__dirname, 'public'),
+            path:       path.join(__dirname, '..', 'dist', 'public'),
             filename:   'client.js',
             publicPath: '/public/',
         },
@@ -50,7 +50,7 @@ module.exports = [
         target: 'node',
         entry:  './server.jsx',
         output: {
-            path:          path.join(__dirname, 'public'),
+            path:          path.join(__dirname, '..', 'dist'),
             filename:      'server.js',
             libraryTarget: 'commonjs2',
             publicPath:    '/public/',

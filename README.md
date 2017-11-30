@@ -10,6 +10,11 @@ Server side rendering with React.js React Router v4 and React Helmet
     ```sh
     $ yarn run build
     ```
+
+- Clean Bundled Source
+    ```sh
+    $ yarn run clean
+    ```
     
 - Run Development Server on http://0.0.0.0:3000
     ```sh
@@ -40,6 +45,7 @@ Server side rendering with React.js React Router v4 and React Helmet
 | babel-preset-env | 1.6 | Preset that compiles ES2015+  |
 | babel-preset-react | 6.24 | Preset that transforms JSX syntax into createElement |
 | babel-preset-stage-0 | 6.24 | Preset that allows us to use ES7 features like decorators and async / await. |
+| del-cli | 1.1 | Command Line for deleting files |
 | express | 4.16 | Node Web Framework that allow for makeing SSR  |
 | path| 0.12 | Utilities for working with file and directory paths |
 | webpack | 3.8 | Module Bundler that bundle JavaScript files for usage in a browser |
@@ -49,7 +55,7 @@ Server side rendering with React.js React Router v4 and React Helmet
 
 ## Structure
 | Directory Name | Description |
-| ------------ | ------- |
+| -------------- | ----------- |
 | public | Public Assets and Bundled JS Files |
 | scripts | Development and Production Script |
 | src | React Sourcecode |

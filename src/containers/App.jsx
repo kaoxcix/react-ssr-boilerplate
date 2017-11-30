@@ -30,10 +30,18 @@ class App extends Component {
                 />
                 
                 <Switch>
-                    <Route exact path='/' component={() => <Index title={messages.root} />} />
-                    <Route path='/heaven' component={() => <Index title={messages.heaven} />} />
-                    <Route path='/hell' component={() => <Index title={messages.hell} />} />
-                    <Route component={() => <Index title={messages.notFound} />} />
+                    <Route
+                        exact path='/'
+                        component={() => <Index title={messages.root} />} />
+                    <Route
+                        path='/heaven'
+                        component={() => <Index title={messages.heaven} />} />
+                    <Route
+                        path='/hell'
+                        component={() => <Index title={messages.hell} />} />
+                    <Route
+                        path='*'
+                        component={() => <Index title={messages.notFound} />} />
                 </Switch>
             </div>
         );
