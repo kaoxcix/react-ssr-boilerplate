@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom';
-import Index from "./Index";
+import Index from "Containers/Index";
 import Helmet from 'react-helmet'
 
 
