@@ -1,20 +1,21 @@
-const path    = require('path');
-const webpack = require('webpack');
+const Path    = require('path');
+const Webpack = require('webpack');
 
 const PUBLIC_PATH = '/public/';
 
-
-const commonConfiguration = {
-    context: path.resolve(__dirname, '..', 'src'),
+// Common Configuration
+const commonConfiguration = () => ({
+    context: Path.resolve(__dirname, '..', 'src'),
     resolve: {
         extensions: ['.js', '.jsx'],
         alias:      {
-            Api:        path.resolve(__dirname, '..', 'src', 'api'),
-            Components: path.resolve(__dirname, '..', 'src', 'componennts'),
-            Containers: path.resolve(__dirname, '..', 'src', 'containers'),
-            Utilities:  path.resolve(__dirname, '..', 'src', 'utilities'),
-            Images:     path.resolve(__dirname, '..', 'src', 'public', 'images'),
-            Src:        path.resolve(__dirname, '..', 'src'),
+            Api:        Path.resolve(__dirname, '..', 'src', 'api'),
+            Components: Path.resolve(__dirname, '..', 'src', 'components'),
+            Containers: Path.resolve(__dirname, '..', 'src', 'containers'),
+            Constants:  Path.resolve(__dirname, '..', 'src', 'constants'),
+            Utilities:  Path.resolve(__dirname, '..', 'src', 'utilities'),
+            Images:     Path.resolve(__dirname, '..', 'src', 'public', 'images'),
+            Src:        Path.resolve(__dirname, '..', 'src'),
         },
     },
     devtool: 'source-map',
@@ -36,39 +37,93 @@ const commonConfiguration = {
                         loader:  'url-loader',
                         options: {
                             limit: 8000,
-                            name:  "images/[hash].[ext]",
+                            name:  "/images/[hash].[ext]"
                         }
                     }
                 ]
-            }
+            },
         ],
     },
+});
+
+// Client Configuration
+const clientConfig = {
+    ...commonConfiguration(),
+
+    name:   'client',
+    target: 'web',
+    entry:  './client.jsx',
+    output: {
+        path:       Path.resolve(__dirname, '..', 'dist', 'public'),
+        filename:   'client.js',
+        publicPath: PUBLIC_PATH,
+    },
+
+    plugins: [
+        new Webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('development')
+            }
+        }),
+    ]
 };
 
-module.exports = [
-    {
-        ...commonConfiguration,
-
-        name:   'client',
-        target: 'web',
-        entry:  './client.jsx',
-        output: {
-            path:       path.join(__dirname, '..', 'dist', 'public'),
-            filename:   'client.js',
-            publicPath: PUBLIC_PATH,
+clientConfig.module.rules.push({
+    test:    /\.(css|scss|sass)$/,
+    use:     [
+        'style-loader',
+        {
+            loader:  'css-loader',
+            options: {
+                importLoaders: 1,
+                minimize: true
+            }
         },
+        'sass-loader',
+    ],
+});
+
+
+// Server Configuration
+const serverConfig = {
+    ...commonConfiguration(),
+
+    name:   'server',
+    target: 'node',
+    entry:  './server.jsx',
+    output: {
+        path:          Path.join(__dirname, '..', 'dist'),
+        filename:      'server.js',
+        libraryTarget: 'commonjs2',
+        publicPath:    PUBLIC_PATH,
     },
-    {
-        ...commonConfiguration,
 
-        name:   'server',
-        target: 'node',
-        entry:  './server.jsx',
-        output: {
-            path:          path.join(__dirname, '..', 'dist'),
-            filename:      'server.js',
-            libraryTarget: 'commonjs2',
-            publicPath:    PUBLIC_PATH,
+    plugins: [
+        new Webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('development')
+            }
+        }),
+    ],
+};
+
+serverConfig.module.rules.push({
+    test:    /\.(css|scss|sass)$/,
+    use:     [
+        'node-style-loader',
+        {
+            loader:  'css-loader',
+            options: {
+                importLoaders: 1,
+                minimize: true
+            }
         },
-    }
+        'postcss-loader?sourceMap',
+        'sass-loader?sourceMap',
+    ],
+});
+
+module.exports = [
+    clientConfig,
+    serverConfig,
 ];

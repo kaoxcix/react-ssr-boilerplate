@@ -1,27 +1,48 @@
 const
-    // required modules
+    // required packages
     express                      = require('express')
-    , path                       = require('path')
     , app                        = express()
     , webpack                    = require('webpack')
+    , path                       = require('path')
     , webpackDevMiddleware       = require('webpack-dev-middleware')
     , webpackHotMiddleware       = require('webpack-hot-middleware')
     , webpackHotServerMiddleware = require('webpack-hot-server-middleware')
     , config                     = require('../webpack/webpack.development.config.js')
     , compiler                   = webpack(config)
 
-    // configuration
+    , i18nextMiddleware          = require('i18next-express-middleware')
+    , i18n                       = require('../src/i18n.js')
+    , Backend                       = require('i18next-node-fs-backend')
+
+
+// configuration
     , serverHostname             = '0.0.0.0'
-    , serverPort                 = '3000'
+    , serverPort                 = '9000'
     , publicPath                 = config[0].publicPath
-;
+
+    ;
+
+i18n
+    .use(Backend)
+    .use(i18nextMiddleware.LanguageDetector)
+    .init({
+        preload: ['en', 'th'], // preload all langages
+        ns: ['common'], // need to preload all the namespaces
+        backend: {
+            loadPath: path.resolve(__dirname, '..', 'src', 'locales', '{{lng}}', '{{ns}}.json'),
+        }
+    });
+
+app.use(i18nextMiddleware.handle(i18n))
+    .use('/locales', express.static(path.resolve(__dirname, '..', 'src', 'locales')));
+
 
 app.use(webpackDevMiddleware(
     compiler,
     {
-        noInfo: true,
-        publicPath: publicPath,
-        serverSideRender: true,
+        noInfo:           true,
+        publicPath:       publicPath,
+        serverSideRender: false,
     }
 ));
 
